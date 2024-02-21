@@ -13,7 +13,7 @@ interface Card {
 }
 
 export function App() {
-  const [booster, setBooster] = useState<Booster>();
+  const [boosterInfo, setBoosterInfo] = useState<{requestNum: number, booster: Booster}>();
   const [loading, setLoading] = useState(false);
 
   const errorToast = useToast()
@@ -21,8 +21,7 @@ export function App() {
     setLoading(true);
     try {
       const response = await axios.get('https://fourcores.xyz/api/boosters?setCode=bet&count=1');
-      setBooster(response.data[0]);
-      console.log(response.data[0]);
+      setBoosterInfo({ requestNum: boosterInfo?.requestNum ?  boosterInfo.requestNum++ : 1, booster: response.data[0] });
     } catch (error) {
       errorToast({
         title: 'Oops!',
@@ -51,18 +50,18 @@ export function App() {
         {loading ? 'Loading...' : 'Crack Booster'}
       </Button>
       <SimpleGrid columns={[2,3,4,5]} spacing={4}>
-        {booster?.cards.map((card, index) => (
-          <Box key={card.id} position="relative">
+        {boosterInfo?.booster.cards.map((card, index) => (
+          <Box key={boosterInfo.requestNum + card.id} position="relative">
             <Image src={`https://sorcery-api.s3.amazonaws.com/${card.id}.png`} />
             <Skeleton
-              hidden={index !== booster.foilIndex}
+              hidden={index !== boosterInfo.booster.foilIndex}
               style={{
                 position: "absolute",
                 top: 0,
                 left: 0,
                 width: "100%",
                 height: "100%",
-                borderRadius: "1rem"
+                borderRadius: "0.9rem"
               }}
               speed={2}
             />
