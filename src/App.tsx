@@ -50,7 +50,7 @@ export function App() {
       <Button onClick={fetchBooster} disabled={loading}>
         {loading ? 'Loading...' : 'Crack Booster'}
       </Button>
-      <SimpleGrid columns={[1,2,3,4,5]} spacing={4}>
+      <SimpleGrid columns={[2,3,4,5]} spacing={4}>
         {booster?.cards.map((card, index) => (
           <Box key={card.id} position="relative">
             <Image src={`https://sorcery-api.s3.amazonaws.com/${card.id}.png`} />
