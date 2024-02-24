@@ -1,2 +1,2 @@
 /api/*  https://sorcery-api-b2505e2732e7.herokuapp.com/:splat  200!
-/counter https://sorcerycounter.netlify.app/ 200!
+/counter/* https://sorcerycounter.netlify.app/:splat 200!
