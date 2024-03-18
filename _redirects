@@ -1,2 +1,3 @@
 /api/*  https://sorcery-api-b2505e2732e7.herokuapp.com/:splat  200!
 /counter/* https://sorcerycounter.netlify.app/:splat 200!
+/seerbot https://discord.com/api/oauth2/authorize?client_id=1205311766280544346&permissions=3072&scope=bot 200!
